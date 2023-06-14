@@ -20,7 +20,7 @@ Output: Game {
         Jason {...}
 }
 
-Describe: submit event function 
+Describe: submit event
 
 Test: "it will set variables equal to the value of the inputs"
 Code: Input 1: "Jason"
@@ -54,5 +54,11 @@ Output: pigGame {
         name: Moses,
         .....
     }
-
 }
+
+Describe: roll dice event
+
+Test: "It will display the dice result on the targeted span"
+Code: document.getElementById("display-dice-roll").innerText = diceRoll();
+result: in HTML: span - "diceRoll()" - span
+
