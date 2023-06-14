@@ -48,10 +48,13 @@ form.addEventListener('submit', function (event) {
     let player2Object = new Player(player2);
     pigGame.addPlayer(player1Object);
     pigGame.addPlayer(player2Object);
+    form.setAttribute('class', 'hidden')
 });
 
 let rollDice = document.getElementById('roll-dice');
 rollDice.addEventListener('click', function() {
+    let diceCurrentNumber = document.getElementById('dice-current-number');
+    diceCurrentNumber.setAttribute('class','')
     let rollResult = diceRoll();
     if (pigGame.currentPlayer === 1) {
         document.getElementById("display-dice-roll").innerText = rollResult;

@@ -14,14 +14,14 @@
         <div id="rules" class="player">
             <ol>
                 <h4>Rules:</h4>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>Roll the dice for your turn.</li>
+                <li>Continue rolling the die until you're happy with the number of points you've scored.<br> Then, "hold" by handing the die over to your opponent, and track all points earned during your turn.</li>
+                <li>In case you hit '1' you loose your points for that round, and the turn goes to your opponent.</li>
+                <li>Reach 100 points first and win the game.</li>
             </ol>
         </div>
         <!-- form -->
-        <form>
+        <form class="">
             <label for="">Player 1:</label>
             <input id="player-1-input-name" type="text">
             <label for="">Player 2:</label>
@@ -32,7 +32,7 @@
         <div id="main-div" class="main-div">
             <!-- Player 1 -->
             <div id="player-1" class="container">
-                <h2>Player 1: <span id="player-1-name">Name</span></h2>
+                <h2> <span id="player-1-name"></span></h2>
                 <h3>Score: <span id="player-1-perm-score"></span></h3>
                 <!-- space -->
                 <h4 id="temp-score">Temporary Score: <span id="player-1-temp-score"></span></h4>
@@ -41,15 +41,17 @@
             <!-- middle div -->
             <div id="middle-div" class="container">
                 <h1>Goal: 100 Points</h1>
-                <div id="dice-current-number"><h2><span id="display-dice-roll"></span></h2></div>
-                <button id="roll-dice">Roll the Dice</button>
-                <button id="hold">Hold</button>
-                <button id="new-game">New Game</button>
+                <div id="dice-current-number" class="invisible"><h2><span id="display-dice-roll">0</span></h2></div>
+                <div id="buttons">
+                    <button id="roll-dice">Roll the Dice</button>
+                    <button id="hold">Hold</button>
+                    <button id="new-game">New Game</button>
+                </div>
             </div>
 
             <!-- Player 2 -->
             <div id="player-2" class="container">
-                <h2>Player 2: <span id="player-2-name">Name</span></h2>
+                <h2><span id="player-2-name"></span></h2>
                 <h3>Score: <span id="player-2-perm-score"></span></h3>
                 <!-- space -->
                 <h4 id="temp-score">Temporary Score: <span id="player-2-temp-score"></span></h4>

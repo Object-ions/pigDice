@@ -7,6 +7,14 @@ body{
     text-align: center;
 }
 
+h4{
+    text-align: center;
+}
+
+ol{
+    text-align: left;
+}
+
 .main-div{
     display: flex;
     height: 800px;
@@ -15,4 +23,12 @@ body{
 .container{
     align-items: center;
     width: 33.33%;
+}
+
+.hidden{
+    display: none;
+}
+
+.invisible{
+    visibility: hidden;
 }
