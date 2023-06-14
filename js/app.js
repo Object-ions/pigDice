@@ -2,15 +2,21 @@
 
 function diceRoll() {
     return Math.floor(Math.random() * 6) + 1;
-    console.log(diceRoll())
 };
 
 function Game() {
     this.players = {}
+    this.currentId = 0;
 };
 
+Game.prototype.assignId = function() {
+    this.currentId += 1
+    return this.currentId;
+}
+
 Game.prototype.addPlayer = function(player) {
-    this.players[player.name] = player;
+    player.id = this.assignId();
+    this.players[player.id] = player;
 };
 
 function Player(name) {
@@ -38,6 +44,8 @@ form.addEventListener('submit', function (event) {
 
 let rollDice = document.getElementById('roll-dice');
 rollDice.addEventListener('click', function() {
-    document.getElementById("display-dice-roll").innerText = diceRoll();
+    let rollResult = diceRoll();
+    document.getElementById("display-dice-roll").innerText = rollResult;
+    pigGame.players[1].tempScore += rollResult;
 });
 
