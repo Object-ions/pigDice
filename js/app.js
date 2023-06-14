@@ -5,6 +5,14 @@ function diceRoll() {
     console.log(diceRoll())
 }
 
+function Game() {
+    this.players = {}
+}
+
+Game.prototype.addPlayer = function(player) {
+    this.players[player.name] = player;
+}
+
 function Player(name) {
     this.name = name;
     this.tempScore = 0;
