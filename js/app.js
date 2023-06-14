@@ -6,6 +6,7 @@ function diceRoll() {
 
 function Game() {
     this.players = {}
+    this.currentPlayer = 1
     this.currentId = 0;
 };
 
@@ -14,6 +15,14 @@ Game.prototype.assignId = function() {
     return this.currentId;
 }
 
+Game.prototype.setActivePlayer = function() {
+    if (this.currentPlayer === 1) {
+    this.currentPlayer = 2;
+    } else if (this.currentPlayer === 2) {
+    this.currentPlayer =1;
+    }
+}
+    
 Game.prototype.addPlayer = function(player) {
     player.id = this.assignId();
     this.players[player.id] = player;
@@ -39,13 +48,35 @@ form.addEventListener('submit', function (event) {
     let player2Object = new Player(player2);
     pigGame.addPlayer(player1Object);
     pigGame.addPlayer(player2Object);
-    console.log(pigGame);
 });
 
 let rollDice = document.getElementById('roll-dice');
 rollDice.addEventListener('click', function() {
     let rollResult = diceRoll();
-    document.getElementById("display-dice-roll").innerText = rollResult;
-    pigGame.players[1].tempScore += rollResult;
+    if (pigGame.currentPlayer === 1) {
+        document.getElementById("display-dice-roll").innerText = rollResult;
+        pigGame.players[1].tempScore += rollResult;
+        document.getElementById("player-1-temp-score").innerText = pigGame.players[1].tempScore; 
+    } else if (pigGame.currentPlayer === 2)    {
+        document.getElementById("display-dice-roll").innerText = rollResult;
+        pigGame.players[2].tempScore += rollResult;
+        document.getElementById("player-2-temp-score").innerText = pigGame.players[2].tempScore; 
+    }
 });
 
+let holdButton = document.getElementById('hold');
+holdButton.addEventListener('click', function () {
+    if (pigGame.currentPlayer === 1) {
+        pigGame.players[1].permScore += pigGame.players[1].tempScore;
+        pigGame.players[1].tempScore = 0;
+        document.getElementById("player-1-perm-score").innerText = pigGame.players[1].permScore; 
+        document.getElementById("player-1-temp-score").innerText = '';
+        pigGame.setActivePlayer();
+    } else if (pigGame.currentPlayer === 2) {
+        pigGame.players[2].permScore += pigGame.players[2].tempScore;
+        pigGame.players[2].tempScore = 0;
+        document.getElementById("player-2-perm-score").innerText = pigGame.players[2].permScore; 
+        document.getElementById("player-2-temp-score").innerText = ''; 
+        pigGame.setActivePlayer();
+    }
+});
