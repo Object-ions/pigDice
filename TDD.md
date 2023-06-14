@@ -19,3 +19,40 @@ Output: Game {
     players: 
         Jason {...}
 }
+
+Describe: submit event function 
+
+Test: "it will set variables equal to the value of the inputs"
+Code: Input 1: "Jason"
+      Input 2: "Moses"
+Output: > player1;
+        >"Jason"
+        >player2;
+        >"Moses"
+
+Test: "it will change the inner text of the targeted spans"
+Code: Input 1: "Jason"
+      Input 2: "Moses"
+Output: in HTML: Player 1: JASON
+                 Player 2: MOSES
+
+Test: "it will store the input values into the player objects"
+Code: Input 1: "Jason"
+      Input 2: "Moses"
+Output: player1Object {name: "Jason,...}
+        player2Object {name: "Moses,...}
+
+Test: "It will store the player objects into the game object"
+Code: Input 1: "Jason"
+      Input 2: "Moses"
+Output: pigGame {
+    players: "Jason" {
+        name: Jason,
+        .....
+    }, 
+    "Moses" {
+        name: Moses,
+        .....
+    }
+
+}
