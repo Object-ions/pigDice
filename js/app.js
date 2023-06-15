@@ -110,7 +110,11 @@ rollDice.addEventListener('click', function() {
     
 });
 
+let winningDiv = document.getElementById('winning');
+let generalDiv = document.getElementById('general-div');
 let holdButton = document.getElementById('hold');
+let winnerName = document.getElementById('winner-name');
+
 holdButton.addEventListener('click', function () {
     if (pigGame.currentPlayer === 1) {
         pigGame.players[1].permScore += pigGame.players[1].tempScore;
@@ -118,7 +122,9 @@ holdButton.addEventListener('click', function () {
         document.getElementById("player-1-perm-score").innerText = pigGame.players[1].permScore; 
         document.getElementById("player-1-temp-score").innerText = '';
         if (pigGame.players[1].permScore >= 100){
-            console.log("You won, baby!");
+            winnerName.innerHTML = pigGame.players[1].name;
+            generalDiv.setAttribute('class', 'hidden');
+            winningDiv.setAttribute('class', 'winning');
         } else {
             pigGame.setActivePlayer();
         }
@@ -128,7 +134,9 @@ holdButton.addEventListener('click', function () {
         document.getElementById("player-2-perm-score").innerText = pigGame.players[2].permScore; 
         document.getElementById("player-2-temp-score").innerText = ''; 
         if (pigGame.players[2].permScore >= 100){
-            console.log("You won, baby!");
+            winnerName.innerHTML = pigGame.players[2].name;
+            generalDiv.setAttribute('class', 'hidden');
+            winningDiv.setAttribute('class', 'winning');
         } else {
             pigGame.setActivePlayer();
         }
@@ -136,4 +144,8 @@ holdButton.addEventListener('click', function () {
     
 });
 
-let newGame 
+
+let newGame = document.getElementById('new-game');
+newGame.addEventListener('click', function(){
+    window.location.reload();
+});

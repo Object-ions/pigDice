@@ -8,8 +8,12 @@
     <title>Pid Dice</title>
 </head>
 <body>
-    
-    <div class="general-div">
+    <div id="winning" class="hidden">
+        <h1 id="winner-name">NAME</h1>
+        <h1>YOUR'E A WINNER BABY!</h1>
+        <button id="new-game">New Game</button>
+    </div>
+    <div id="general-div" class="general-div">
         <!-- rules -->
         <div id="rules" class="rules">
             <ol>
@@ -41,7 +45,7 @@
 
             <!-- middle div -->
             <div id="middle-div" class="container">
-                <div id="dice-current-number" class="invisible"> <h2 id="display-dice-roll"></h2> </div>
+                <div id="dice-current-number" class="invisible"> <h2 id="display-dice-roll">0</h2> </div>
                 
                 <div id="buttons" class="buttons">
                     <button id="roll-dice">Roll the Dice</button>
