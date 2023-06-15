@@ -135,3 +135,5 @@ holdButton.addEventListener('click', function () {
     }
     
 });
+
+let newGame 
