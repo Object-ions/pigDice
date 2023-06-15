@@ -35,6 +35,7 @@ function Player(name) {
 };
 
 // UI logic:
+let img = document.getElementById('img');
 let pigGame = new Game();
 
 let form = document.querySelector('form');
@@ -61,12 +62,27 @@ rollDice.addEventListener('click', function() {
     let diceCurrentNumber = document.getElementById('dice-current-number');
     diceCurrentNumber.setAttribute('class','')
     let rollResult = diceRoll();
+
+    if (diceRoll() == 1) {
+        img.src = 'img/die1.png'
+    } else if (diceRoll() == 2){
+        img.src = 'img/die2.png'
+    } else if (diceRoll() == 3){
+        img.src = 'img/die3.png'
+    } else if (diceRoll() == 4){
+        img.src = 'img/die4.png'
+    } else if (diceRoll() == 5){
+        img.src = 'img/die5.png'
+    } else if (diceRoll() == 6){
+        img.src = 'img/die6.png'
+    };
+
     if (pigGame.currentPlayer === 1) {
-        document.getElementById("display-dice-roll").innerText = rollResult;
+        // document.getElementById("display-dice-roll").innerText = rollResult;
         pigGame.players[1].tempScore += rollResult;
         document.getElementById("player-1-temp-score").innerText = pigGame.players[1].tempScore; 
     } else if (pigGame.currentPlayer === 2)    {
-        document.getElementById("display-dice-roll").innerText = rollResult;
+        // document.getElementById("display-dice-roll").innerText = rollResult;
         pigGame.players[2].tempScore += rollResult;
         document.getElementById("player-2-temp-score").innerText = pigGame.players[2].tempScore; 
     }
@@ -88,19 +104,3 @@ holdButton.addEventListener('click', function () {
         pigGame.setActivePlayer();
     }
 });
-
-
-let imgUrl;
-if (diceRoll() == 1) {
-    imgUrl = 'img/die1.png'
-} else if (diceRoll() == 2){
-    imgUrl = 'img/die2.png'
-} else if (diceRoll() == 3){
-    imgUrl = 'img/die3.png'
-} else if (diceRoll() == 4){
-    imgUrl = 'img/die4.png'
-} else if (diceRoll() == 5){
-    imgUrl = 'img/die5.png'
-} else {
-    imgUrl = 'img/die6.png'
-};
