@@ -31,12 +31,28 @@ Game.prototype.addPlayer = function(player) {
 function Player(name) {
     this.name = name;
     this.tempScore = 0;
-    this.permScore = 0;
+    this.permScore = 85;
 };
 
 // UI logic:
 let img = document.getElementById('img');
 let pigGame = new Game();
+
+function rollResult1() {
+    if (pigGame.currentPlayer === 1) {
+        pigGame.players[1].tempScore = 0;
+        document.getElementById("display-dice-roll").innerText = 1;
+        document.getElementById("player-1-temp-score").innerText = "You hit a 1! You're temporary score has reset and now it's P2 turn"; 
+        pigGame.setActivePlayer();
+    } else if (pigGame.currentPlayer === 2) {
+        pigGame.players[2].tempScore = 0;
+        document.getElementById("display-dice-roll").innerText = 1;
+        document.getElementById("player-2-temp-score").innerText = "You hit a 1! You're temporary score has reset and now it's P1 turn"; 
+        pigGame.setActivePlayer();
+        console.log("P2 hit 1");
+    }
+
+}
 
 let form = document.querySelector('form');
 form.addEventListener('submit', function (event) {
@@ -63,29 +79,35 @@ rollDice.addEventListener('click', function() {
     diceCurrentNumber.setAttribute('class','')
     let rollResult = diceRoll();
 
-    if (diceRoll() == 1) {
-        img.src = 'img/die1.png'
-    } else if (diceRoll() == 2){
-        img.src = 'img/die2.png'
-    } else if (diceRoll() == 3){
-        img.src = 'img/die3.png'
-    } else if (diceRoll() == 4){
-        img.src = 'img/die4.png'
-    } else if (diceRoll() == 5){
-        img.src = 'img/die5.png'
-    } else if (diceRoll() == 6){
-        img.src = 'img/die6.png'
-    };
+    // if (diceRoll() === 1) {
+    //     img.src = 'img/die1.png';
+    // } else if (diceRoll() === 2){
+    //     img.src = 'img/die2.png';
+    // } else if (diceRoll() === 3){
+    //     img.src = 'img/die3.png';
+    // } else if (diceRoll() === 4){
+    //     img.src = 'img/die4.png';
+    // } else if (diceRoll() === 5){
+    //     img.src = 'img/die5.png';
+    // } else if (diceRoll() === 6){
+    //     img.src = 'img/die6.png';
+    // };
 
-    if (pigGame.currentPlayer === 1) {
-        // document.getElementById("display-dice-roll").innerText = rollResult;
-        pigGame.players[1].tempScore += rollResult;
-        document.getElementById("player-1-temp-score").innerText = pigGame.players[1].tempScore; 
-    } else if (pigGame.currentPlayer === 2)    {
-        // document.getElementById("display-dice-roll").innerText = rollResult;
-        pigGame.players[2].tempScore += rollResult;
-        document.getElementById("player-2-temp-score").innerText = pigGame.players[2].tempScore; 
+    if (rollResult === 1) {
+        rollResult1()
+    } else {
+        if (pigGame.currentPlayer === 1) {
+            document.getElementById("display-dice-roll").innerText = rollResult;
+            pigGame.players[1].tempScore += rollResult;
+            document.getElementById("player-1-temp-score").innerText = pigGame.players[1].tempScore; 
+        } else if (pigGame.currentPlayer === 2)    {
+            document.getElementById("display-dice-roll").innerText = rollResult;
+            pigGame.players[2].tempScore += rollResult;
+            document.getElementById("player-2-temp-score").innerText = pigGame.players[2].tempScore; 
+        }
     }
+
+    
 });
 
 let holdButton = document.getElementById('hold');
@@ -95,12 +117,21 @@ holdButton.addEventListener('click', function () {
         pigGame.players[1].tempScore = 0;
         document.getElementById("player-1-perm-score").innerText = pigGame.players[1].permScore; 
         document.getElementById("player-1-temp-score").innerText = '';
-        pigGame.setActivePlayer();
+        if (pigGame.players[1].permScore >= 100){
+            console.log("You won, baby!");
+        } else {
+            pigGame.setActivePlayer();
+        }
     } else if (pigGame.currentPlayer === 2) {
         pigGame.players[2].permScore += pigGame.players[2].tempScore;
         pigGame.players[2].tempScore = 0;
         document.getElementById("player-2-perm-score").innerText = pigGame.players[2].permScore; 
         document.getElementById("player-2-temp-score").innerText = ''; 
-        pigGame.setActivePlayer();
+        if (pigGame.players[2].permScore >= 100){
+            console.log("You won, baby!");
+        } else {
+            pigGame.setActivePlayer();
+        }
     }
+    
 });
