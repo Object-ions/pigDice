@@ -49,6 +49,11 @@ form.addEventListener('submit', function (event) {
     pigGame.addPlayer(player1Object);
     pigGame.addPlayer(player2Object);
     form.setAttribute('class', 'hidden')
+    let mainDiv = document.getElementById('main-div');
+    mainDiv.classList.remove("invisible");
+    let goalDiv = document.getElementById('goal-div');
+    goalDiv.classList.remove("invisible");
+
 });
 
 let rollDice = document.getElementById('roll-dice');
@@ -83,3 +88,19 @@ holdButton.addEventListener('click', function () {
         pigGame.setActivePlayer();
     }
 });
+
+
+let imgUrl;
+if (diceRoll() == 1) {
+    imgUrl = 'img/die1.png'
+} else if (diceRoll() == 2){
+    imgUrl = 'img/die2.png'
+} else if (diceRoll() == 3){
+    imgUrl = 'img/die3.png'
+} else if (diceRoll() == 4){
+    imgUrl = 'img/die4.png'
+} else if (diceRoll() == 5){
+    imgUrl = 'img/die5.png'
+} else {
+    imgUrl = 'img/die6.png'
+};
